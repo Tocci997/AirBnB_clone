@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """a test module for testing our code"""
-
 import unittest
 from models.base_model import BaseModel
+
 
 class BaseModelTest(unittest.TestCase):
     """tests our BaseModel class"""
@@ -28,8 +28,10 @@ class BaseModelTest(unittest.TestCase):
         self.assertIsInstance(eg_model_dict, dict)
         self.assertEqual(eg_model_dict["__class__"], 'BaseModel')
         self.assertEqual(eg_model_dict["id"], eg_model.id)
-        self.assertEqual(eg_model_dict["created_at"], eg_model.created_at.isoformat())
-        self.assertEqual(eg_model_dict["updated_at"], eg_model.updated_at.isoformat())
+        self.assertEqual(eg_model_dict["created_at"],
+                         eg_model.created_at.isoformat())
+        self.assertEqual(eg_model_dict["updated_at"],
+                         eg_model.updated_at.isoformat())
 
     def test_str(self):
         eg_model = BaseModel()
@@ -37,6 +39,7 @@ class BaseModelTest(unittest.TestCase):
         self.assertTrue(str(eg_model).startswith('[BaseModel]'))
         self.assertIn(eg_model.id, str(eg_model))
         self.assertIn(str(eg_model.__dict__), str(eg_model))
+
 
 if __name__ == "__main__":
     unittest.main()

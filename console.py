@@ -4,12 +4,18 @@ import cmd
 import shlex
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
     """defines the HBnB command line interpreter"""
     prompt = "(hbnb)"
-    accepted_classes = ["BaseModel"]
+    accepted_classes = ["BaseModel", "User"]
 
     def do_quit(self, arg):
         """for exiting the program"""
@@ -23,7 +29,7 @@ class HBNBCommand(cmd.Cmd):
         """EOF signal to end the program"""
         print()
         return True
-    
+
     def emptyline(self):
         """do nothing when an emptyline is entered"""
         pass
@@ -39,10 +45,10 @@ class HBNBCommand(cmd.Cmd):
         elif commands[0] not in self.accepted_classes:
             print("** class doesn't exist **")
         else:
-            new_inst = BaseModel()
-            new_inst.save()
+            new_inst = eval(f"{commands[0]}()")
+            storage.save()
             print(new_inst.id)
-            
+
     def do_show(self, arg):
         """
         Prints the string representation of an instance based
