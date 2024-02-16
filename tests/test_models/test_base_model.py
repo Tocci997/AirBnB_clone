@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 """a test module for testing our code"""
+import os
+import models
+from datetime import datetime
 import unittest
 from models.base_model import BaseModel
 
