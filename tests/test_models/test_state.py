@@ -13,6 +13,12 @@ class TestState(unittest.TestCase):
     def test_that_instance_stored_in_objects(self):
         self.assertIn(State(), models.storage.all().values())
 
+    def test_name_is_public_class_attribute(self):
+        Imo = State()
+        self.assertEqual(str, type(State.name))
+        self.assertIn("name", dir(Imo))
+        self.assertNotIn("name", Imo.__dict__)
+
     def test_two_states_unique_ids(self):
         Imo = State()
         Abia = State()
