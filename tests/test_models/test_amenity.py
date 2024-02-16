@@ -13,6 +13,12 @@ class TestAmenity(unittest.TestCase):
     def test_that_instance_stored_in_objects(self):
         self.assertIn(Amenity(), models.storage.all().values())
 
+    def test_name_is_public_class_attribute(self):
+        amen = Amenity()
+        self.assertEqual(str, type(Amenity.name))
+        self.assertIn("name", dir(Amenity()))
+        self.assertNotIn("name", amen.__dict__)
+
     def test_unique_ids(self):
         amen1 = Amenity()
         amen2 = Amenity()

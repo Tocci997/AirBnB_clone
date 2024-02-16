@@ -13,6 +13,24 @@ class TestReview(unittest.TestCase):
     def test_that_instance_stored_in_objects(self):
         self.assertIn(Review(), models.storage.all().values())
 
+    def test_place_id_is_public_class_attribute(self):
+        rev = Review()
+        self.assertEqual(str, type(Review.place_id))
+        self.assertIn("place_id", dir(rev))
+        self.assertNotIn("place_id", rev.__dict__)
+
+    def test_user_id_is_public_class_attribute(self):
+        rev = Review()
+        self.assertEqual(str, type(Review.user_id))
+        self.assertIn("user_id", dir(rev))
+        self.assertNotIn("user_id", rev.__dict__)
+
+    def test_text_is_public_class_attribute(self):
+        rev = Review()
+        self.assertEqual(str, type(Review.text))
+        self.assertIn("text", dir(rev))
+        self.assertNotIn("text", rev.__dict__)
+
     def test_unique_ids(self):
         rev1 = Review()
         rev2 = Review()
